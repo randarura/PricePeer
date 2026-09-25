@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
+import { FAQ_ITEMS } from "@/lib/faq";
 
 type Stage = "hero" | "loading" | "results";
 
@@ -161,13 +162,13 @@ export function PriceCompareLanding() {
       <main className="mx-auto w-full max-w-3xl px-6 pb-24">
         <section className="pt-10 sm:pt-16">
           <h1 className="text-4xl font-semibold tracking-tight text-neutral-950 sm:text-5xl sm:leading-[1.1]">
-            Pricing your new SaaS?
-            <br />
-            See what 10 real competitors charge.
+            SaaS Pricing Benchmark for Founders
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral-500 sm:text-lg">
-            Paste your SaaS URL and get a pricing benchmark based on real
-            competitor pricing.
+            Paste your SaaS URL and compare your pricing with 10 real
+            competitors. See how your plans and pricing position against the
+            market—built for SaaS founders who need a clear pricing benchmark,
+            not guesswork.
           </p>
 
           <form onSubmit={handleAnalyze} className="mt-10">
@@ -384,6 +385,75 @@ export function PriceCompareLanding() {
             </div>
           </section>
         ) : null}
+
+        <section className="mt-24 border-t border-neutral-100 pt-16">
+          <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
+            How SaaS Pricing Benchmarking Works
+          </h2>
+          <ol className="mt-6 space-y-4 text-base leading-relaxed text-neutral-600">
+            <li className="flex gap-3">
+              <span className="font-medium text-neutral-900">1.</span>
+              <span>Paste your SaaS URL</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-medium text-neutral-900">2.</span>
+              <span>PriceCompare identifies relevant competitors</span>
+            </li>
+            <li className="flex gap-3">
+              <span className="font-medium text-neutral-900">3.</span>
+              <span>Compare pricing plans and market positioning</span>
+            </li>
+          </ol>
+        </section>
+
+        <section className="mt-16">
+          <h2 className="text-2xl font-semibold tracking-tight text-neutral-950">
+            Why benchmark your SaaS pricing?
+          </h2>
+          <div className="mt-5 max-w-2xl space-y-4 text-base leading-relaxed text-neutral-600">
+            <p>
+              Most SaaS founders set prices by copying a few familiar products
+              or picking a number that “feels right.” Competitor pricing research
+              takes hours when you open pricing pages one by one—and it is easy
+              to miss patterns across entry plans, Pro tiers, annual discounts,
+              and usage metrics.
+            </p>
+            <p>
+              A pricing benchmark turns that scattered research into a clear
+              snapshot: what similar products charge, which packaging is common,
+              and where you sit versus the market. That context sharpens SaaS
+              pricing strategy—whether you are launching, raising prices, or
+              testing a new tier—without relying on AI to invent an “optimal”
+              price.
+            </p>
+            <p>
+              PriceCompare is built to help founders compare real competitor
+              pricing quickly, so market positioning decisions are grounded in
+              what the market actually charges today.
+            </p>
+          </div>
+        </section>
+
+        <section className="mt-16" aria-labelledby="faq-heading">
+          <h2
+            id="faq-heading"
+            className="text-2xl font-semibold tracking-tight text-neutral-950"
+          >
+            Frequently asked questions
+          </h2>
+          <div className="mt-6 space-y-6">
+            {FAQ_ITEMS.map((item) => (
+              <div key={item.question}>
+                <h3 className="text-base font-semibold text-neutral-900">
+                  {item.question}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-neutral-600 sm:text-base">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="mx-auto w-full max-w-3xl border-t border-neutral-100 px-6 py-8">
