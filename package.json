@@ -1,5 +1,5 @@
 {
-  "name": "pricecompare-tmp",
+  "name": "pricecompare",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "16.3.6",
+    "posthog-js": "^1.434.13",
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },

@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PriceCompare
 
-## Getting Started
+Demand-validation landing page for PriceCompare — paste a SaaS URL, preview a sample pricing benchmark, and join the waitlist.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- PostHog (`posthog-js`) for analytics
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Analytics
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Set PostHog env vars (see `.env.example`):
 
-## Learn More
+- `NEXT_PUBLIC_POSTHOG_KEY`
+- `NEXT_PUBLIC_POSTHOG_HOST` (optional)
 
-To learn more about Next.js, take a look at the following resources:
+Events:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Event | When |
+| --- | --- |
+| `pricecompare_page_view` | Page load |
+| `saas_url_entered` | URL entered (blur / analyze) |
+| `analyze_pricing_clicked` | Analyze Pricing CTA |
+| `email_submitted` | Waitlist signup |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`saas_url` is included when available. Email addresses are **not** sent to analytics.
 
-## Deploy on Vercel
+Without a PostHog key, events log to the browser console in development.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Waitlist storage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Signups are appended to `data/waitlist.jsonl` (gitignored) when the filesystem is writable.
